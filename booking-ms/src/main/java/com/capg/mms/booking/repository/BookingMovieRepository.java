@@ -1,0 +1,21 @@
+package com.capg.mms.booking.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.capg.mms.booking.model.Booking;
+import com.capg.mms.booking.model.Payment;
+import com.capg.mms.booking.model.Seat;
+
+@Repository
+public interface BookingMovieRepository extends JpaRepository<Booking,Integer>{
+
+//	double save(double totalCost);
+//
+//	boolean exists(String paymentMethod);
+//
+//	boolean saveAndFlush(String paymentMethod);
+	
+}
