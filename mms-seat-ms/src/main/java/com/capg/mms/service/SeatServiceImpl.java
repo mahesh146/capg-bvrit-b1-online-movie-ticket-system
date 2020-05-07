@@ -14,6 +14,7 @@ import com.capg.mms.exceptions.SeatAlreadyExistException;
 import com.capg.mms.exceptions.SeatException;
 import com.capg.mms.exceptions.SeatNotFoundException;
 import com.capg.mms.model.Seat;
+import com.capg.mms.model.SeatReader;
 import com.capg.mms.model.SeatStatus;
 
 import com.capg.mms.repository.ISeatRepository;
@@ -30,10 +31,26 @@ public class SeatServiceImpl implements ISeatService {
 	 ***************************************************/
 	@Override
 	@Transactional
-	public Seat addSeat(Seat seat) {
-		if (seatRepo.existsById(seat.getSeatId())) {
+	public Seat addSeat(SeatReader seatReader) {
+		
+		if (seatRepo.existsById(seatReader.getSeatId())) {
 			throw new SeatAlreadyExistException("Seat already exists");
 		}
+		
+			SeatStatus seatStatus;
+			switch (seatReader.getSeatStatus()) {
+			
+			case "BOOKED":
+				seatStatus=SeatStatus.BOOKED;
+				break;
+			case "BLOCKED":
+				seatStatus=SeatStatus.BLOCKED;
+				break;
+			default:
+				seatStatus=SeatStatus.AVAILABLE;
+				break;
+			}
+			Seat seat=new Seat(seatReader.getSeatId(),seatStatus,seatReader.getSeatPrice());
 		return seatRepo.save(seat);
 	}
 
