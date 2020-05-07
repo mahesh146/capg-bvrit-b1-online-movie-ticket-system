@@ -26,7 +26,7 @@ public class TicketController {
 	@Autowired
 	TicketServiceImpl ticketservice;
 	
-	@PostMapping("/all")
+	@PostMapping("/add/all")
 	public ResponseEntity<Ticket> addTicketById(@RequestBody Ticket ticket){
 			return new ResponseEntity<Ticket>(ticketservice.addTicketById(ticket), HttpStatus.CREATED);
 	}
