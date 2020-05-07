@@ -1,5 +1,6 @@
 package com.capg.mms.register.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,10 +19,10 @@ import org.hibernate.annotations.FetchMode;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+//@Entity
 @Table(name = "theatre")
 public class Theatre {
-	@Id
+	//@Id
 	//@GeneratedValue
 	private int theatreId;
 	private String theatreName;
@@ -30,7 +31,9 @@ public class Theatre {
 	private List<Integer> movies;
 	@OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //	@MapsId
-	private List<Screen> listOfScreens;
+	//@OneToMany(mappedBy="theatre")
+	//@JsonIgnore
+	private List<Screen> listOfScreens = new ArrayList<>() ;
 	private String managerName;
 	private String managerContact;
 
@@ -88,6 +91,7 @@ public class Theatre {
 
 	public void setListOfScreens(List<Screen> listOfScreens) {
 
+		
 		
 		  for (Screen screen : listOfScreens) { screen.setTheatre(this); }
 		 

@@ -1,9 +1,13 @@
 package com.capg.mms.register.service;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.capg.mms.register.model.Movie;
@@ -24,16 +28,18 @@ public class AdminServiceImpl implements IAdminService {
 		return rt.postForObject("http://theatre-ms/theatres/add", theatre, Theatre.class);
 	}
 	
-	public Theatre updateTheatre(Theatre theatre) {
-		Theatre t= rt.postForObject("http://theatre-ms/theatres/add", theatre, Theatre.class);
-		 rt.put("http://theater-ms/theatres/update", t,t);
-		 return t;
+	public Theatre updateTheatre(Theatre theatre) throws RestClientException, URISyntaxException {
+		//Theatre t= rt.postForObject("http://theatre-ms/theatres/add", theatre, Theatre.class);
+		if(theatre != null) {
+			rt.put(new URI("http://theatre-ms/theatres/update"),theatre);
+		}
+		 return theatre;
 	}
 
 	@Override
 	public List<Theatre>findAllTheatres() {
-		Theatre theatreList=rt.getForObject("http://theatre-ms/theatres/all", Theatre.class);
-	return (List<Theatre>) theatreList;
+		Theatre[] theatreList=rt.getForObject("http://theatre-ms/theatres/all", Theatre[].class);
+	return (List<Theatre>) Arrays.asList(theatreList);
 	}
 
 	@Override

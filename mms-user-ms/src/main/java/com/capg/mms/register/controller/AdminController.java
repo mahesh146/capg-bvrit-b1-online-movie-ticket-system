@@ -1,5 +1,6 @@
 package com.capg.mms.register.controller;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 
 import com.capg.mms.register.model.Movie;
 import com.capg.mms.register.model.Screen;
@@ -52,8 +54,8 @@ public class AdminController {
 		 adminService.deleteTheatreById(theatreId);
 	}
 	@PutMapping("/update/theatre")
-	public Theatre updateTheatre(@RequestBody Theatre theatreId) {
-		return adminService.updateTheatre(theatreId);
+	public Theatre updateTheatre(@RequestBody Theatre theatre) throws RestClientException, URISyntaxException {
+		return adminService.updateTheatre(theatre);
 	}
 	@GetMapping("/get/all/theatre")
 	public List<Theatre> findAllTheatres() {

@@ -1,6 +1,7 @@
 package com.capg.mms.register.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,8 +20,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "screen")
+//@Entity
+//@Table(name = "screen")
 public class Screen {
 	@Id
 	//@GeneratedValue
@@ -30,18 +31,21 @@ public class Screen {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "theatreId")
 	@JsonIgnore
+	//@ManyToOne
+	//@JoinColumn(name="theaterid")
 	private Theatre theatre;
 
 	public Theatre getTheatre() {
 		return theatre;
 	}
-
 	public void setTheatre(Theatre theatre) {
 		this.theatre = theatre;
 	}
 
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)
-	private List<Show> showList;
+	//@OneToMany(mappedBy ="screen")
+	//@JsonIgnore
+	private List<Show> showList = new ArrayList<>();
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate movieEndDate;
 	@Column(name = "rows_details")
@@ -92,9 +96,9 @@ public class Screen {
 
 	public void setShowList(List<Show> showList) {
 
-		for (Show show : showList) {
-			show.setScreen(this);
-		}
+		
+		 for (Show show : showList) { show.setScreen(this); }
+		 
 		this.showList = showList;
 	}
 
