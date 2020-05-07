@@ -93,7 +93,7 @@ public class TheatreController {
 		
 	}
 	
-	@GetMapping("/name/{id}")
+	@GetMapping("/name/{name}")
 	public ResponseEntity<Theatre> getByName(@PathVariable("name") String theatreName) throws TheatreException
 	{
 		ResponseEntity<Theatre> rt = null;

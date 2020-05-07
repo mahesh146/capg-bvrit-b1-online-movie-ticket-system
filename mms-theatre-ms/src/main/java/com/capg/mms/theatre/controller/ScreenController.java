@@ -42,11 +42,10 @@ public class ScreenController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Screen> addScreen(@RequestBody Screen screen, @PathVariable int screenId,
-			@PathVariable int theatreId) throws TheatreException {
-		if (screenService.validateScreenId(screenId, theatreId))
+	public ResponseEntity<Screen> addScreen(@RequestBody Screen screen) throws TheatreException {
+		//if (screenService.validateScreenId(screenId, theatreId))
 			return new ResponseEntity<Screen>(screenService.addScreen(screen), HttpStatus.CREATED);
-		return new ResponseEntity<Screen>(HttpStatus.BAD_REQUEST);
+		//return new ResponseEntity<Screen>(HttpStatus.BAD_REQUEST);
 	}
 
 	@PutMapping("/update")

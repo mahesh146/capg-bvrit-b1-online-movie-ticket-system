@@ -30,6 +30,8 @@ public class Theatre {
 	private List<Integer> movies;
 	@OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 //	@MapsId
+	//@OneToMany(mappedBy="theatre")
+	//@JsonIgnore
 	private List<Screen> listOfScreens;
 	private String managerName;
 	private String managerContact;
@@ -89,8 +91,9 @@ public class Theatre {
 	public void setListOfScreens(List<Screen> listOfScreens) {
 
 		
+		
 		  for (Screen screen : listOfScreens) { screen.setTheatre(this); }
-		 
+		 	 
 		this.listOfScreens = listOfScreens;
 	}
 
