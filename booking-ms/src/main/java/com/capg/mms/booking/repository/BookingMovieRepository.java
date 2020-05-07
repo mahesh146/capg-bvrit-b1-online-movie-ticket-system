@@ -9,13 +9,9 @@ import com.capg.mms.booking.model.Booking;
 import com.capg.mms.booking.model.Payment;
 import com.capg.mms.booking.model.Seat;
 
-@Repository
+
 public interface BookingMovieRepository extends JpaRepository<Booking,Integer>{
 
-//	double save(double totalCost);
-//
-//	boolean exists(String paymentMethod);
-//
-//	boolean saveAndFlush(String paymentMethod);
+
 	
 }

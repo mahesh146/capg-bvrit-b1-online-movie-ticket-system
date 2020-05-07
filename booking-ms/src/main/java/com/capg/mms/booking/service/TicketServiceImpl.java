@@ -31,11 +31,11 @@ public class TicketServiceImpl implements ITicketService {
 		return ticketRepo.save(ticket);
 	}
 	
-	@Override
-	public Seat addBookingById(int seatId) {
-		return ticketRepo.save(seatId);
-		
-	}
+//	@Override
+//	public Seat addBookingById(int seatId) {
+//		return ticketRepo.save(seatId);
+//		
+//	}
 
 	@Override
 	public boolean cancelBookingById(int seatId) throws TicketCancellationException {

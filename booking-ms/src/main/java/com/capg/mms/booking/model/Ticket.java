@@ -28,6 +28,7 @@ private String screenName;
 public Ticket() {
 	super();
 }
+
 public Ticket(int ticketId, int noOfSeats, List<String> seatName, Booking bookingRef, boolean ticketStatus,
 		String screenName) {
 	super();

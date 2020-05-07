@@ -37,11 +37,11 @@ public class TicketController {
 		return new ResponseEntity<Ticket>(HttpStatus.OK);
 	}
 	
-	@PostMapping("/add")
-	public ResponseEntity<Seat> addBookingById(@PathVariable int seatId){
-			return new ResponseEntity<Seat>(ticketservice.addBookingById(seatId), HttpStatus.CREATED);
-	}
-	
+//	@PostMapping("/add")
+//	public ResponseEntity<Seat> addBookingById(@PathVariable int seatId){
+//			return new ResponseEntity<Seat>(ticketservice.addBookingById(seatId), HttpStatus.CREATED);
+//	}
+//	
 	@DeleteMapping("/seat/{seatId}")
 	public ResponseEntity<Seat> cancelBookingById(@PathVariable int seatId) throws TicketCancellationException {
 

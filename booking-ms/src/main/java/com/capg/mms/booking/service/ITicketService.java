@@ -14,7 +14,7 @@ public interface ITicketService {
 	public Ticket showTicketById(int ticketId) throws TicketNotFoundException;
 
 
-	public Seat addBookingById(int seatId);
+	//public Seat addBookingById(int seatId);
 	public boolean cancelBookingById(int seatId) throws TicketCancellationException;
 
 	
