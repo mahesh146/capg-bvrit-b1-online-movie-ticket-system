@@ -34,8 +34,8 @@ public class BookingMovieController {
 		return new ResponseEntity<Seat>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/payment/all")
-	public ResponseEntity<Payment> makePayment(@PathVariable Payment payment, double totalCost,List<Integer>seatIds){
+//	@GetMapping("/payment/all")
+//	public ResponseEntity<Payment> makePayment(@PathVariable Payment payment, double totalCost,List<Integer>seatIds){
 //		//List<Payment> PaymentMethod=service.makePayment(paymentMethod,totalcost);
 //		//List<Payment> list=paymentMethod.getCardNumber();
 		ResponseEntity<Payment> rt = null;
@@ -50,8 +50,8 @@ public class BookingMovieController {
 //		else {
 //			rt = new ResponseEntity<Payment>(HttpStatus.NOT_FOUND);
 //		}
-		return rt;	
-	}
+//		return rt;	
+//	}
 	
 
 }
