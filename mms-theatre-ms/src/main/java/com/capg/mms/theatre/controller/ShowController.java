@@ -38,8 +38,8 @@ public class ShowController {
 	public ResponseEntity<List<Show>> findAllShows() throws TheatreException {
 
 		List<Show> list = showService.findAllShows();
-		ResponseEntity<List<Show>> rt = new ResponseEntity<List<Show>>(list, HttpStatus.OK);
-		return rt;
+		ResponseEntity<List<Show>> responseEntity = new ResponseEntity<List<Show>>(list, HttpStatus.OK);
+		return responseEntity;
 
 	}
 
@@ -54,34 +54,34 @@ public class ShowController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Show> updateTheShowById(@RequestBody Show show) throws TheatreException {
-		ResponseEntity<Show> rt = null;
+		ResponseEntity<Show> responseEntity = null;
 
 		if (show != null) {
 			show = showService.updateShowById(show);
-			rt = new ResponseEntity<Show>(show, HttpStatus.OK);
+			responseEntity = new ResponseEntity<Show>(show, HttpStatus.OK);
 		} else {
-			rt = new ResponseEntity<Show>(HttpStatus.NOT_FOUND);
+			responseEntity = new ResponseEntity<Show>(HttpStatus.NOT_FOUND);
 		}
-		return rt;
+		return responseEntity;
 
 	}
 
 	@DeleteMapping("/delete/id/{id}")
 	public ResponseEntity<Show> deleteShowById(@PathVariable("id") int showId) throws TheatreException {
 
-		ResponseEntity<Show> rt = null;
+		ResponseEntity<Show> responseEntity = null;
 
 		if (showId != 0) {
 
 			showService.deleteShowById(showId);
 
-			rt = new ResponseEntity<Show>(HttpStatus.OK);
+			responseEntity = new ResponseEntity<Show>(HttpStatus.OK);
 
 		}
 
 		else {
-			rt = new ResponseEntity<Show>(HttpStatus.NOT_FOUND);
+			responseEntity = new ResponseEntity<Show>(HttpStatus.NOT_FOUND);
 		}
-		return rt;
+		return responseEntity;
 	}
 }

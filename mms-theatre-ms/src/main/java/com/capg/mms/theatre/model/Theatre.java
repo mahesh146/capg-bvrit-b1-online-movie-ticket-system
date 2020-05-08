@@ -6,23 +6,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "theatre")
 public class Theatre {
 	@Id
 	//@GeneratedValue
+	//@Size(min=4,message = "theatreId must minimum be of 4 characters")
+	//@Min(value=2000,message="theatreId must be starting with 2")
 	private int theatreId;
 	private String theatreName;
 	private String theatreCity;

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capg.mms.theatre.exception.TheatreException;
 import com.capg.mms.theatre.model.Theatre;
 import com.capg.mms.theatre.service.TheatreServiceImpl;
+
+import oracle.net.aso.r;
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/theatres")
@@ -36,8 +38,8 @@ public class TheatreController {
 	public ResponseEntity<List<Theatre>> findAllTheatres() throws TheatreException {
 
 		List<Theatre> list = theatreService.findAllTheatres();
-		ResponseEntity<List<Theatre>> rt = new ResponseEntity<List<Theatre>>(list, HttpStatus.OK);
-		return rt;
+		ResponseEntity<List<Theatre>> responseEntity = new ResponseEntity<List<Theatre>>(list, HttpStatus.OK);
+		return responseEntity;
 
 	}
 
@@ -50,29 +52,29 @@ public class TheatreController {
 
 	@PutMapping("/update")
 	public ResponseEntity<Theatre> updateTheaterById(@RequestBody Theatre theatre) throws TheatreException {
-		ResponseEntity<Theatre> rt = null;
+		ResponseEntity<Theatre> responseEntity = null;
 
 		if (theatre != null) {
 			theatre = theatreService.updateTheatreById(theatre);
-			rt = new ResponseEntity<Theatre>(theatre, HttpStatus.OK);
+			responseEntity = new ResponseEntity<Theatre>(theatre, HttpStatus.OK);
 		} else {
-			rt = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
 		}
-		return rt;
+		return responseEntity;
 
 	}
 	@GetMapping("/id/{id}")
 	public ResponseEntity<Theatre> getTheatreById(@PathVariable("id")int theatreId) throws TheatreException{
-		ResponseEntity<Theatre> rt=null;
+		ResponseEntity<Theatre> responseEntity=null;
 		if(theatreId!=0) {
 			Theatre th=theatreService.getTheatreById(theatreId);
-			rt=new ResponseEntity<Theatre>(th,HttpStatus.OK);
+			responseEntity=new ResponseEntity<Theatre>(th,HttpStatus.OK);
 		}
 	
 		else {
-			rt = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
 		}
-		return rt;
+		return responseEntity;
 		
 		
 	}
@@ -80,27 +82,27 @@ public class TheatreController {
 	@DeleteMapping("/delete/id/{id}")
 	public ResponseEntity<Theatre> deleteTheatreById(@PathVariable("id") int theatreId) throws TheatreException {
 
-		ResponseEntity<Theatre> rt = null;
+		ResponseEntity<Theatre> responseEntity = null;
 		if (theatreId != 0) {
 			theatreService.deleteTheatreById(theatreId);
-			rt = new ResponseEntity<Theatre>(HttpStatus.OK);
+			responseEntity = new ResponseEntity<Theatre>(HttpStatus.OK);
 
 		}
 		else {
-			rt = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
 		}
-		return rt;
+		return responseEntity;
 		
 	}
 	
 	@GetMapping("/name/{name}")
 	public ResponseEntity<Theatre> getByName(@PathVariable("name") String theatreName) throws TheatreException
 	{
-		ResponseEntity<Theatre> rt = null;
+		ResponseEntity<Theatre> responseEntity = null;
 			Theatre th=theatreService.getTheatreByName(theatreName);
-			rt = new ResponseEntity<Theatre>(th,HttpStatus.OK);
+			responseEntity = new ResponseEntity<Theatre>(th,HttpStatus.OK);
 
-		return rt;
+		return responseEntity;
 	}
 	/*
 	 * @GetMapping("/id/{id}") public ResponseEntity<Theatre> getById(@PathVariable
