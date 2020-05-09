@@ -28,17 +28,35 @@ public class BookingMovieController {
 	@Autowired
 	BookingServiceImpl service;
 	
-	@GetMapping("/id/{seatId}")	
+	@GetMapping("/{seatId}")	
 	public ResponseEntity<Seat> calculateTotalCost(List<Seat> seats) throws SeatNotFoundException{
 		double totalcost=service.calculateTotalCost(seats);
 		return new ResponseEntity<Seat>(HttpStatus.OK);
 	}
 	
+	@GetMapping("/id/{seatId}")	
+	public ResponseEntity<List<Seat>> chooseSeats(List<Integer> seatIds){
+		List<Seat> blockedSeats=service.chooseSeats(seatIds);
+		return new ResponseEntity<List<Seat>>(HttpStatus.OK);
+	}
+	
+//	@GetMapping("seats")	
+//	public ResponseEntity<List<Seat>> calculateTotalCost(List<Seat> seats) throws SeatNotFoundException{
+//		double totalcost=service.calculateTotalCost(seats);
+//		return new ResponseEntity<List<Seat>>(HttpStatus.OK);
+//	}
+//	
+//	@GetMapping("seatId")	
+//	public ResponseEntity<List<Seat>> chooseSeats(List<Integer> seatIds){
+//		List<Seat> blockedSeats=service.chooseSeats(seatIds);
+//		return new ResponseEntity<List<Seat>>(HttpStatus.OK);
+//	}
+	
 //	@GetMapping("/payment/all")
 //	public ResponseEntity<Payment> makePayment(@PathVariable Payment payment, double totalCost,List<Integer>seatIds){
 //		//List<Payment> PaymentMethod=service.makePayment(paymentMethod,totalcost);
 //		//List<Payment> list=paymentMethod.getCardNumber();
-		ResponseEntity<Payment> rt = null;
+//		ResponseEntity<Payment> rt = null;
 //		if(paymentMethod!=null) {
 //			//service.getDetails(long cardnumber,int expmonth,int expyear,int cvc);
 //			service.setCardNumber(cardnumber);

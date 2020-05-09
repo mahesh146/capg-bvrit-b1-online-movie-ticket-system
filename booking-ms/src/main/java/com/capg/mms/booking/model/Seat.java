@@ -12,14 +12,14 @@ import javax.persistence.Table;
 public class Seat {
 	@Id
 	private int seatId;
-	private Enum seatStatus;
+	private SeatStatus seatStatus;
 	private double seatPrice;
 
 	public Seat() {
-		super();
+		
 	}
 
-	public Seat(int seatId, Enum seatStatus, double seatPrice) {
+	public Seat(int seatId, SeatStatus seatStatus, double seatPrice) {
 		super();
 		this.seatId = seatId;
 		this.seatStatus = seatStatus;
@@ -38,7 +38,7 @@ public class Seat {
 		return seatStatus;
 	}
 
-	public void setSeatStatus(Enum seatStatus) {
+	public void setSeatStatus(SeatStatus seatStatus) {
 		this.seatStatus = seatStatus;
 	}
 

@@ -31,8 +31,9 @@ private List<Integer> seatList;
 @OneToOne
 private Ticket ticket;
 
-
-
+public Booking() {
+	// TODO Auto-generated constructor stub
+}
 
 public Booking(int bookingId, int movieId, int showId, Show showRef, LocalDate bookingDate, int transactionId,
 		double totalCost, List<Integer> seatList, Ticket ticket) {

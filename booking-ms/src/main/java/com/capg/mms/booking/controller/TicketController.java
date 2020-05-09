@@ -26,7 +26,7 @@ public class TicketController {
 	@Autowired
 	TicketServiceImpl ticketservice;
 	
-	@PostMapping("/add/all")
+	@PostMapping("/add")
 	public ResponseEntity<Ticket> addTicketById(@RequestBody Ticket ticket){
 			return new ResponseEntity<Ticket>(ticketservice.addTicketById(ticket), HttpStatus.CREATED);
 	}
@@ -34,24 +34,24 @@ public class TicketController {
 	@GetMapping("/id/{ticketId}")	
 	public ResponseEntity<Ticket> showTicketById(@PathVariable int ticketId) throws BookingBlockedException{
 		Ticket ticket= ticketservice.showTicketById(ticketId);
-		return new ResponseEntity<Ticket>(HttpStatus.OK);
+		return new ResponseEntity<Ticket>(ticketservice.showTicketById(ticketId),HttpStatus.OK);
 	}
 	
-	@PostMapping("/add")
-	public ResponseEntity<Seat> addBookingById(@PathVariable int seatId){
-			return new ResponseEntity<Seat>(ticketservice.addBookingById(seatId), HttpStatus.CREATED);
-	}
-	
-	@DeleteMapping("/seat/{seatId}")
-	public ResponseEntity<Seat> cancelBookingById(@PathVariable int seatId) throws TicketCancellationException {
+//	@PostMapping("/add")
+//	public ResponseEntity<Seat> addBookingById(@PathVariable int seatId){
+//			return new ResponseEntity<Seat>(ticketservice.addBookingById(seatId), HttpStatus.CREATED);
+//	}
+//	
+	@DeleteMapping("/{ticketId}")
+	public ResponseEntity<Ticket> cancelBookingById(@PathVariable int ticketId) throws TicketCancellationException {
 
-		ResponseEntity<Seat> rt = null;
-		if (seatId!=0) {
-			ticketservice.cancelBookingById(seatId);
-			rt = new ResponseEntity<Seat>(HttpStatus.OK);
+		ResponseEntity<Ticket> rt = null;
+		if (ticketId!=0) {
+			ticketservice.cancelBookingById(ticketId);
+			rt = new ResponseEntity<Ticket>(HttpStatus.OK);
 		}
 		else {
-			rt = new ResponseEntity<Seat>(HttpStatus.NOT_FOUND);
+			rt = new ResponseEntity<Ticket>(HttpStatus.NOT_FOUND);
 		}
 		return rt;
 	}

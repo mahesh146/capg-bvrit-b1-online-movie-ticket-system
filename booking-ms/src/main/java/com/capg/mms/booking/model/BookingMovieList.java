@@ -5,6 +5,7 @@ import java.util.List;
 public class BookingMovieList {
 
 	private List BookingMovieBean;
+	
 	public BookingMovieList() {
 		// TODO Auto-generated constructor stub
 	}

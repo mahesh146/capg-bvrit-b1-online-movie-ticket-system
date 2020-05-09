@@ -9,7 +9,7 @@ import com.capg.mms.booking.model.Ticket;
 
 public interface TicketRepo extends JpaRepository<Ticket, Integer> {
 
-	Seat save(int seatId);
+
 
 
 

@@ -15,18 +15,8 @@ public interface IBookingService {
 	
 	public List<Seat> chooseSeats(List<Integer> seatIds);
 	public double calculateTotalCost(List<Seat> seats) throws SeatNotFoundException;
-	public Payment choosePaymentMethod(Payment payment);
+//	public Payment choosePaymentMethod(Payment payment);
 //	public boolean makePayment(Payment payment,double totalCost,List<Integer>seatIds);
 	
-//	public boolean cancelBookingBySeatId(int seatId) throws TicketCancellationException;
-//	public Ticket showTicket(int ticketId);
-//	public boolean cancelBookings(int seatId);
-
-//	public List<Booking> getListOfSeats();
-//	public Booking getSeatById(int seatId) throws BookingBlockedException;
-
-//	public boolean cancelTicketById(int seatId) throws TicketCancellationException;
-//	public Booking getTicketById(int ticketId) throws TicketNotFoundException;
 	
-
 }

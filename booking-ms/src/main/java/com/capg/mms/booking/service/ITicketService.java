@@ -11,11 +11,11 @@ import com.capg.mms.booking.model.Ticket;
 public interface ITicketService {
 	
 	public Ticket addTicketById(Ticket ticket);
-	public Ticket showTicketById(int ticketId) throws TicketNotFoundException;
+	public Ticket showTicketById(int ticketId);
 
 
-	public Seat addBookingById(int seatId);
-	public boolean cancelBookingById(int seatId) throws TicketCancellationException;
+	//public Seat addBookingById(int seatId);
+	public boolean cancelBookingById(int ticketId) throws TicketCancellationException;
 
 	
 

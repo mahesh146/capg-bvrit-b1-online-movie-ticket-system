@@ -31,19 +31,19 @@ public class TicketServiceImpl implements ITicketService {
 		return ticketRepo.save(ticket);
 	}
 	
-	@Override
-	public Seat addBookingById(int seatId) {
-		return ticketRepo.save(seatId);
-		
-	}
+//	@Override
+//	public Seat addBookingById(int seatId) {
+//		return ticketRepo.save(seatId);
+//		
+//	}
 
 	@Override
-	public boolean cancelBookingById(int seatId) throws TicketCancellationException {
+	public boolean cancelBookingById(int ticketId) throws TicketCancellationException {
 
 		//boolean flag = false;
-		if (ticketRepo.existsById(seatId)) 
+		if (ticketRepo.existsById(ticketId)) 
 		{
-			ticketRepo.deleteById(seatId);
+			ticketRepo.deleteById(ticketId);
 		}
 		else {
 			throw new TicketCancellationException("Cancellation Failed : Id not found");

@@ -41,12 +41,17 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 
-	@Override
-	public Payment choosePaymentMethod(Payment payment) {
-		// TODO Auto-generated method stub
-		return payment;
-	}
+//	@Override
+//	public Payment choosePaymentMethod(Payment payment) {
+//		// TODO Auto-generated method stub
+//		return payment;
+//	}
 
+	//@Override
+//	public List<Trainee> findAllTrainees() throws TraineeException{
+//		List<Trainee> list=traineeDao.findAll();
+//		return list;
+//	}
 
 //	@Override
 //	public boolean makePayment(Payment payment, double totalCost,List<Integer>seatIds) {
@@ -56,39 +61,5 @@ public class BookingServiceImpl implements IBookingService {
 //	//	ticketService.cancelBookingBySeatId(seatIds);
 //		return true;
 //   }
-
-
-	
-//	@Override
-//	public Booking getTicketById(int ticketId) {
-//		// TODO Auto-generated method stub
-//		return bookingmovieRepo.getOne(ticketId);
-//	}
-//
-//	@Override
-//	public boolean cancelTicketById(int seatId) throws TicketCancellationException {
-//
-//		boolean flag = false;
-//		if (bookingmovieRepo.existsById(seatId)) {
-//			// deleteTheatre = theatreRepo.findById(theatreId).get();
-//			bookingmovieRepo.deleteById( seatId);
-//		} else {
-//			throw new TicketCancellationException("Cancellation Failed : Id not found");
-//		}
-//		return flag;
-//
-//	}
-
-//	@Override
-//	public Ticket showTicket(int ticketId){
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Boolean cancelBookings(int seatId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 }

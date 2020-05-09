@@ -24,6 +24,7 @@ private List<Integer> movies;
 private List<Screen> listOfScreens;
 private String managerName;
 private String managerContact;
+
 public Theatre(int theatreId, String theatreName, String theatreCity, List<Integer> movies, List<Screen> listOfScreens,
 		String managerName, String managerContact) {
 	super();
