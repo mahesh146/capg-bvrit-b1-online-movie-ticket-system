@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.mms.register.execption.InvalidInputException;
+import com.capg.mms.register.execption.UserAlredyExistsException;
+import com.capg.mms.register.execption.UserNotFoundException;
 import com.capg.mms.register.model.Admin;
 import com.capg.mms.register.model.Customer;
 import com.capg.mms.register.model.Movie;
@@ -33,7 +35,7 @@ public class RegisterController {
 	
 	
 	@PostMapping("/addcustomer")
-	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws InvalidInputException{
+	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws UserAlredyExistsException,InvalidInputException{
 		
 		if(service.validateCustomerId(customer.getUserId()) && service.validateCustomerContact(customer.getCustomerContact())) {
 			
@@ -43,7 +45,7 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/addadmin")
-	public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) throws InvalidInputException{
+	public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) throws UserAlredyExistsException,InvalidInputException{
 		if(service.validateAdminId(admin.getUserId())&&service.validateAdminContact(admin.getAdminContact())) {
 			
 			return new ResponseEntity<Admin>(service.addAdmin(admin),HttpStatus.CREATED); 
@@ -53,13 +55,13 @@ public class RegisterController {
 	}
 	
 	@GetMapping("/getcustomer/id/{userId}")
-	public ResponseEntity<User> getCustomer(@PathVariable int userId) {
+	public ResponseEntity<User> getCustomer(@PathVariable int userId) throws UserNotFoundException{
 		
 		return new ResponseEntity<User>(service.getCustomer(userId),HttpStatus.FOUND);
 	}
 
 	@GetMapping("/getadmin/id/{userId}")
-	public ResponseEntity<User> getadmin(@PathVariable int userId){
+	public ResponseEntity<User> getadmin(@PathVariable int userId) throws UserNotFoundException{
 		return new ResponseEntity<User>(service.getAdmin(userId),HttpStatus.FOUND);
 	}
 	

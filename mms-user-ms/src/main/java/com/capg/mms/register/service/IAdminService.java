@@ -32,11 +32,11 @@ public interface IAdminService {
 	void deleteScreenById(int screenId);
 	Screen updateScreenById(Screen screen);
 	List<Screen> findAllScreens();
-//////	
-////
+
+
 	Show addShow (Show show);	
 	Show updateShowById(Show show);
 	List<Show> findAllShows();
 	void deleteShowById(int showId);
-////	
+	
 }

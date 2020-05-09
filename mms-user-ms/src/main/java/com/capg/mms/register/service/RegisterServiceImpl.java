@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capg.mms.register.execption.InvalidInputException;
+import com.capg.mms.register.execption.UserAlredyExistsException;
+import com.capg.mms.register.execption.UserNotFoundException;
 import com.capg.mms.register.model.Admin;
 import com.capg.mms.register.model.Customer;
 import com.capg.mms.register.model.User;
@@ -19,14 +21,19 @@ public class RegisterServiceImpl implements IRegisterService {
 	IRegisterRepo repo;
 	
 	@Override
-	public Customer addCustomer(Customer customer) {
-		
+	public Customer addCustomer(Customer customer) throws UserAlredyExistsException {
+		if(repo.existsById(customer.getUserId())){
+			
+			throw new UserAlredyExistsException("the customer with same id exists");
+		}
 		return repo.save(customer);
 	}
 
 	@Override
-	public Admin addAdmin(Admin admin) {
-		
+	public Admin addAdmin(Admin admin)throws UserAlredyExistsException{
+		if(repo.existsById(admin.getUserId())) {
+			throw new UserAlredyExistsException("the admin with this userid already exists");
+		}
 		return repo.save(admin);
 	}
 
@@ -69,14 +76,18 @@ public class RegisterServiceImpl implements IRegisterService {
 	}
 
 	@Override
-	public User getCustomer(int userId) {
-		// TODO Auto-generated method stub
+	public User getCustomer(int userId) throws UserNotFoundException{
+		if(!repo.existsById(userId)) {
+			throw new UserNotFoundException("No user with this id :"+userId);
+			}
 		return repo.getOne(userId);
 	}
 
 	@Override
-	public User getAdmin(int userId) {
-		// TODO Auto-generated method stub
+	public User getAdmin(int userId)throws UserNotFoundException {
+		if(!repo.existsById(userId)) {
+		throw new UserNotFoundException("No user with this id :"+userId);
+		}
 		return repo.getOne(userId);
 	}
 
@@ -86,21 +97,6 @@ public class RegisterServiceImpl implements IRegisterService {
 		return repo.findAll();
 	}
 
-	@Override
-	public boolean validateAdminDob(LocalDate dateOfBirth) throws InvalidInputException {
-		
-		return false;
+	
 	}
 
-	@Override
-	public boolean validateCustomerDob(LocalDate dateOfBirth) throws InvalidInputException {
-		
-		return false;
-	}
-
-	
-	
-
-	
-
-}
