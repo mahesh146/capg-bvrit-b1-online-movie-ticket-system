@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.capg.mms.model.Seat;
+import com.capg.mms.model.SeatReader;
 import com.capg.mms.service.SeatServiceImpl;
 
 
@@ -34,8 +35,8 @@ public class SeatController {
 	
 	/*********************************ADD SEAT***********************************************/
 	@PostMapping("/add")
-	public ResponseEntity<Seat> addSeat(@Valid @RequestBody Seat seat) {
-		seatService.addSeat(seat);
+	public ResponseEntity<Seat> addSeat(@Valid @RequestBody SeatReader seatReader) {
+		Seat seat=seatService.addSeat(seatReader);
 		return new ResponseEntity<Seat>(seat, HttpStatus.CREATED);	
 	}
 	

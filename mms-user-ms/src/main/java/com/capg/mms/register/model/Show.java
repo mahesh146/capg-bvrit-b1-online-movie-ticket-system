@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
+//@Entity
 public class Show {
 @Id
 private int showId;
@@ -32,6 +32,8 @@ private List<Integer> seats;
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name="screenId")
 @JsonBackReference
+//@ManyToOne
+//@JoinColumn(name="screenId")
 private Screen screen;
 private String showName;
 private int movieId;

@@ -7,22 +7,22 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "screen")
 public class Screen {
 	@Id
+	//@Size(min=4, message = "ScreenId must be minimum of 4 digits")
 	//@GeneratedValue
 	private int screenId;
 //private int theatreId;
@@ -30,6 +30,8 @@ public class Screen {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "theatreId")
 	@JsonIgnore
+	//@ManyToOne
+	//@JoinColumn(name="theaterid")
 	private Theatre theatre;
 
 	public Theatre getTheatre() {
@@ -41,6 +43,8 @@ public class Screen {
 	}
 
 	@OneToMany(mappedBy = "screen", cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy ="screen")
+	//@JsonIgnore
 	private List<Show> showList;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate movieEndDate;
@@ -74,6 +78,7 @@ public class Screen {
 		this.screenId = screenId;
 	}
 
+	
 	/*
 	 * public int getTheatreId() { return theatreId; } public void setTheatreId(int
 	 * theatreId) { this.theatreId = theatreId; }
@@ -92,9 +97,9 @@ public class Screen {
 
 	public void setShowList(List<Show> showList) {
 
-		for (Show show : showList) {
-			show.setScreen(this);
-		}
+		
+		 for (Show show : showList) { show.setScreen(this); }
+		 
 		this.showList = showList;
 	}
 

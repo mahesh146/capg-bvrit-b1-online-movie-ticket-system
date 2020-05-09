@@ -63,7 +63,7 @@ public class ScreenServiceImpl implements IScreenService {
 		String screen=Integer.toString(screenId);
 		String screen1 = screen+theatre;
 		if(!(screen1.length()>=4))
-			throw new TheatreException("ScreenId must be minimum of $ characters, concatinated with screenId and theatreId");
+			throw new TheatreException("ScreenId must be minimum of 4 characters, concatinated with screenId and theatreId");
 		return true;
 		
 	}

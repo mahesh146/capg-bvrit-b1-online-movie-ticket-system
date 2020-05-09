@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capg.mms.register.execption.InvalidInputException;
+import com.capg.mms.register.execption.UserAlredyExistsException;
+import com.capg.mms.register.execption.UserNotFoundException;
 
 @ControllerAdvice
 @RestController
@@ -17,5 +19,16 @@ public class RegisterErrorController {
 	public void handelInvalidInputException(){
 		
 	}
+	@ExceptionHandler(UserAlredyExistsException.class)
+	@ResponseStatus(value= HttpStatus.NOT_ACCEPTABLE,reason = "user already exists")
+	public void handelUserAlredyExistsException (){
+		
+	}
+	@ExceptionHandler(UserNotFoundException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "user not found")
+	public  void handelUserNotFoundException() {
+		
+	}
 
+	
 }

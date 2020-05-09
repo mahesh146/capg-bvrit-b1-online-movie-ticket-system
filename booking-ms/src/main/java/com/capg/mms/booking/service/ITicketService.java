@@ -15,7 +15,11 @@ public interface ITicketService {
 
 
 	//public Seat addBookingById(int seatId);
+
 	public boolean cancelBookingById(int ticketId) throws TicketCancellationException;
+
+//	public boolean cancelBookingById(int seatId) throws TicketCancellationException;
+
 
 	
 

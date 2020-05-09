@@ -40,6 +40,6 @@ public class User {
 		return "User [userId=" + userId + ", password=" + password + "]";
 	}
 	public User() {
-		// TODO Auto-generated constructor stub
+		
 	}
 }

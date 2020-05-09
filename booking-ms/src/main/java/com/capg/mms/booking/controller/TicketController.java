@@ -42,9 +42,9 @@ public class TicketController {
 //			return new ResponseEntity<Seat>(ticketservice.addBookingById(seatId), HttpStatus.CREATED);
 //	}
 //	
+
 	@DeleteMapping("/{ticketId}")
 	public ResponseEntity<Ticket> cancelBookingById(@PathVariable int ticketId) throws TicketCancellationException {
-
 		ResponseEntity<Ticket> rt = null;
 		if (ticketId!=0) {
 			ticketservice.cancelBookingById(ticketId);
