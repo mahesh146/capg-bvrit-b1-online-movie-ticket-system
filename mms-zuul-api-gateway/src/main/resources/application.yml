@@ -1,0 +1,1 @@
+spring:  application:    name: api-gateway-msserver:  port: 8012zuul:  routes:    user-ms:      path: /users/**      service-id: user-ms      strip-prefix: false    theatre-ms:      path: /theatres/**      service-id: theater-ms      strip-prefix: false#    movie-ms:#      path: /movies/**#      service-id: movie-ms#      strip-prefix: false  
