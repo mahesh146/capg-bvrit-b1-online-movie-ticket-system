@@ -26,16 +26,16 @@ public class TheatreServiceImpl implements ITheatreService {
 
 	@Override
 	public Theatre updateTheatreById(Theatre theatre) throws TheatreException{
-		int theatreId = theatre.getTheatreId();
-		if( theatreRepo.existsById(theatreId))
-		{
-			Theatre updateTheatre = theatreRepo.findById(theatreId).get();
-			theatreRepo.saveAndFlush(updateTheatre);
-		}
-		else
-		{
-			throw new TheatreException("Id not found");
-		}
+		//int theatreId = theatre.getTheatreId();
+		//if( theatreRepo.existsById(theatreId))
+		//{
+			//Theatre updateTheatre = theatreRepo.findById(theatreId).get();
+			theatreRepo.saveAndFlush(theatre);
+		//}
+		//else
+		//{
+			//throw new TheatreException("Id not found");
+		//}
 		return theatre;
 	}
 

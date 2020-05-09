@@ -24,13 +24,13 @@ public class ScreenServiceImpl implements IScreenService {
 
 	@Override
 	public Screen updateScreenById(Screen screen) throws TheatreException {
-		int screenId = screen.getScreenId();
-		if (screenRepo.existsById(screenId)) {
-			Screen updateScreen = screenRepo.findById(screenId).get();
-			screenRepo.saveAndFlush(updateScreen);
-		} else {
-			throw new TheatreException("Id not found");
-		}
+		//int screenId = screen.getScreenId();
+		//if (screenRepo.existsById(screenId)) {
+			//Screen updateScreen = screenRepo.findById(screenId).get();
+			screenRepo.saveAndFlush(screen);
+		//} else {
+		//	throw new TheatreException("Id not found");
+		//}
 		return screen;
 	}
 
