@@ -74,7 +74,7 @@ public class User {
 		this.userType = userType;
 	}
 	 public User() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	@Override
 	public String toString() {
