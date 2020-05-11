@@ -29,10 +29,14 @@ public class UserController {
 		
 		
 	}
-	@GetMapping("/get/id/{userId}")
+	@GetMapping("{userId}")
 	public ResponseEntity<User> getUserById(@PathVariable int userId){
 		
 		return new ResponseEntity<User>(userService.getUserById(userId),HttpStatus.FOUND);
 		
 	}
+	@GetMapping("/get/userName/{userName}")
+	public User getUserByUserName(@PathVariable String userName) {
+		return userService.getUserByUserName(userName);			
+	} 
 }

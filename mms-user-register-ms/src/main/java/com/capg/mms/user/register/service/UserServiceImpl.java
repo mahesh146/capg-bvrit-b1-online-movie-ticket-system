@@ -31,6 +31,11 @@ public class UserServiceImpl implements IUserService{
 		
 		return userRepo.getOne(userId);
 	}
+	
+
+	public User getUserByUserName(String userName) {
+		return userRepo.getUserByUserName(userName);
+	}
 
 	@Override
 	public boolean validateUserPhoneNo(String userContact) {
@@ -56,7 +61,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public boolean validateUserId(User user){
 		
-		if(user.getUserType().equals("customer"))
+		if(user.getUserType().equals("USER"))
 		{
 			    String s=Integer.toString(user.getUserId());
 				
@@ -87,7 +92,7 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public boolean validateUserType(String userType)  {
-		if((userType.toLowerCase()).equals("admin") || (userType.toLowerCase()).equals("user")){
+		if((userType.toLowerCase()).equals("ADMIN") || (userType.toLowerCase()).equals("USER")){
 			return true;
 		}
 		else 

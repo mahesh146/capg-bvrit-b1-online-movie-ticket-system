@@ -23,6 +23,7 @@ public class LogInServiceImpl implements ILogInService {
 			if(!password.equals(userRepo.getUserByUserName(userName).getPassword())) {
 				throw new InvalidInputException("Password mismatch");
 			}
+			
 		}
 		return true;
 	}

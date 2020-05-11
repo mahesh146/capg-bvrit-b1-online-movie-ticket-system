@@ -9,6 +9,8 @@ public interface IUserService {
 	
 	public User getUserById(int userId);
 	
+	public User getUserByUserName(String userName);
+	
 	public boolean validateUserPhoneNo(String userContact);
 	
 	public boolean validateUserEmail(String userEmail);
