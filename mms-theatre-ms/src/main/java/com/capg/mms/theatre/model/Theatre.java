@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "theatre")
@@ -19,7 +17,7 @@ public class Theatre {
 	//@GeneratedValue
 	//@Size(min=4,message = "theatreId must minimum be of 4 characters")
 	//@Min(value=2000,message="theatreId must be starting with 2")
-	private int theatreId;
+	private Integer theatreId;
 	private String theatreName;
 	private String theatreCity;
 	@ElementCollection
@@ -32,7 +30,7 @@ public class Theatre {
 	private String managerName;
 	private String managerContact;
 
-	public Theatre(int theatreId, String theatreName, String theatreCity, List<Integer> movies,
+	public Theatre(Integer theatreId, String theatreName, String theatreCity, List<Integer> movies,
 			List<Screen> listOfScreens, String managerName, String managerContact) {
 		super();
 		this.theatreId = theatreId;
@@ -48,11 +46,11 @@ public class Theatre {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getTheatreId() {
+	public Integer getTheatreId() {
 		return theatreId;
 	}
 
-	public void setTheatreId(int theatreId) {
+	public void setTheatreId(Integer theatreId) {
 		this.theatreId = theatreId;
 	}
 

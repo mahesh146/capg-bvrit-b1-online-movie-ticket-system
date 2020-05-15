@@ -9,7 +9,7 @@ import com.capg.mms.theatre.model.Theatre;
 @Repository
 public interface ITheatreRepo extends JpaRepository<Theatre, Integer> {
 
-	public Theatre getByTheatreId(int theatreId);
+	public Theatre getByTheatreId(Integer theatreId);
 
 	public Theatre getByTheatreName(String theatreName);
 

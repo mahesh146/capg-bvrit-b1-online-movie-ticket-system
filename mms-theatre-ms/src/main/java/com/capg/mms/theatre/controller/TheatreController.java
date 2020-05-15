@@ -22,9 +22,9 @@ import com.capg.mms.theatre.model.Theatre;
 import com.capg.mms.theatre.service.TheatreServiceImpl;
 
 import oracle.net.aso.r;
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/theatres")
+@RequestMapping("/theatre")
 public class TheatreController {
 
 	@Autowired
@@ -35,7 +35,7 @@ public class TheatreController {
 	 * ---
 	 */
 	@GetMapping("/all")
-	public ResponseEntity<List<Theatre>> findAllTheatres() throws TheatreException {
+	public ResponseEntity<List<Theatre>> findAllTheatres()  {
 
 		List<Theatre> list = theatreService.findAllTheatres();
 		ResponseEntity<List<Theatre>> responseEntity = new ResponseEntity<List<Theatre>>(list, HttpStatus.OK);
@@ -44,65 +44,64 @@ public class TheatreController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Theatre> addTheatre(@RequestBody Theatre theatre)throws TheatreException {
+	public ResponseEntity<Theatre> addTheatre(@RequestBody Theatre theatre) {
 		if(theatreService.validateTheatreId(theatre.getTheatreId()))
 		return new ResponseEntity<Theatre>(theatreService.addTheatre(theatre), HttpStatus.CREATED);
 		return new ResponseEntity<Theatre>(HttpStatus.BAD_REQUEST);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Theatre> updateTheaterById(@RequestBody Theatre theatre) throws TheatreException {
-		ResponseEntity<Theatre> responseEntity = null;
-
+	public ResponseEntity<Theatre> updateTheaterById(@RequestBody Theatre theatre) {
+		
 		if (theatre != null) {
-			theatre = theatreService.updateTheatreById(theatre);
-			responseEntity = new ResponseEntity<Theatre>(theatre, HttpStatus.OK);
-		} else {
-			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
-		}
-		return responseEntity;
+			theatreService.updateTheatreById(theatre).getTheatreId();
+			return new ResponseEntity<Theatre>(theatre, HttpStatus.OK);
+		} 
+			 return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+		
+		
 
 	}
 	@GetMapping("/id/{id}")
-	public ResponseEntity<Theatre> getTheatreById(@PathVariable("id")int theatreId) throws TheatreException{
-		ResponseEntity<Theatre> responseEntity=null;
+	public ResponseEntity<Theatre> getTheatreById(@PathVariable("id")Integer theatreId){
+
 		if(theatreId!=0) {
 			Theatre th=theatreService.getTheatreById(theatreId);
-			responseEntity=new ResponseEntity<Theatre>(th,HttpStatus.OK);
+			return new ResponseEntity<Theatre>(th,HttpStatus.OK);
 		}
 	
-		else {
-			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
-		}
-		return responseEntity;
+		
+			return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+		
+		
 		
 		
 	}
 
 	@DeleteMapping("/delete/id/{id}")
-	public ResponseEntity<Theatre> deleteTheatreById(@PathVariable("id") int theatreId) throws TheatreException {
+	public ResponseEntity<Theatre> deleteTheatreById(@PathVariable("id") Integer theatreId)  {
 
-		ResponseEntity<Theatre> responseEntity = null;
+		
 		if (theatreId != 0) {
 			theatreService.deleteTheatreById(theatreId);
-			responseEntity = new ResponseEntity<Theatre>(HttpStatus.OK);
+			return new ResponseEntity<Theatre>(HttpStatus.OK);
 
 		}
 		else {
-			responseEntity = new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
+			 return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
 		}
-		return responseEntity;
+		
 		
 	}
 	
 	@GetMapping("/name/{name}")
-	public ResponseEntity<Theatre> getByName(@PathVariable("name") String theatreName) throws TheatreException
+	public ResponseEntity<Theatre> getByName(@PathVariable("name") String theatreName) 
 	{
-		ResponseEntity<Theatre> responseEntity = null;
+		
 			Theatre th=theatreService.getTheatreByName(theatreName);
-			responseEntity = new ResponseEntity<Theatre>(th,HttpStatus.OK);
+			return new ResponseEntity<Theatre>(th,HttpStatus.OK);
 
-		return responseEntity;
+		
 	}
 	/*
 	 * @GetMapping("/id/{id}") public ResponseEntity<Theatre> getById(@PathVariable

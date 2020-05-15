@@ -12,11 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "screen")
@@ -24,20 +23,18 @@ public class Screen {
 	@Id
 	//@Size(min=4, message = "ScreenId must be minimum of 4 digits")
 	//@GeneratedValue
-	private int screenId;
-//private int theatreId;
+	private Integer screenId;
+//private Integer theatreId;
 	private String screenName;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "theatreId")
-	@JsonIgnore
+	@JsonBackReference
 	//@ManyToOne
 	//@JoinColumn(name="theaterid")
 	private Theatre theatre;
-
 	public Theatre getTheatre() {
 		return theatre;
 	}
-
 	public void setTheatre(Theatre theatre) {
 		this.theatre = theatre;
 	}
@@ -46,19 +43,19 @@ public class Screen {
 	//@OneToMany(mappedBy ="screen")
 	//@JsonIgnore
 	private List<Show> showList;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd ")
 	private LocalDate movieEndDate;
 	@Column(name = "rows_details")
-	private int rows;
+	private Integer rows;
 	@Column(name = "columns_details")
-	private int columns;
+	private Integer columns;
 
 	public Screen() {
 		super();
 	}
 
-	public Screen(int screenId, int theatreId, String screenName, Theatre theatre, List<Show> showList,
-			LocalDate movieEndDate, int rows, int columns) {
+	public Screen(Integer screenId, Integer theatreId, String screenName, Theatre theatre, List<Show> showList,
+			LocalDate movieEndDate, Integer rows, Integer columns) {
 		super();
 		this.screenId = screenId;
 //	this.theatreId = theatreId;
@@ -70,17 +67,17 @@ public class Screen {
 		this.columns = columns;
 	}
 
-	public int getScreenId() {
+	public Integer getScreenId() {
 		return screenId;
 	}
 
-	public void setScreenId(int screenId) {
+	public void setScreenId(Integer screenId) {
 		this.screenId = screenId;
 	}
 
 	
 	/*
-	 * public int getTheatreId() { return theatreId; } public void setTheatreId(int
+	 * public Integer getTheatreId() { return theatreId; } public void setTheatreId(Integer
 	 * theatreId) { this.theatreId = theatreId; }
 	 */
 	public String getScreenName() {
@@ -111,19 +108,19 @@ public class Screen {
 		this.movieEndDate = movieEndDate;
 	}
 
-	public int getRows() {
+	public Integer getRows() {
 		return rows;
 	}
 
-	public void setRows(int rows) {
+	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
 
-	public int getColumns() {
+	public Integer getColumns() {
 		return columns;
 	}
 
-	public void setColumns(int columns) {
+	public void setColumns(Integer columns) {
 		this.columns = columns;
 	}
 

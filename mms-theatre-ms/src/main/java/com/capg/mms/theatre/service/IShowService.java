@@ -8,9 +8,9 @@ import com.capg.mms.theatre.model.Show;
 
 public interface IShowService {
 	Show addShow (Show show);
-	Show updateShowById(Show show) throws TheatreException;
-	boolean deleteShowById(int showId) throws TheatreException;
-	List<Show> findAllShows() throws TheatreException;
-	Show getShowById(int showId);
-	boolean validateShowId(int showId,int theatreId,int screenId)throws TheatreException;
+	Show updateShowById(Show show);
+	boolean deleteShowById(Integer showId);
+	List<Show> findAllShows();
+	Show getShowById(Integer showId);
+	
 }

@@ -2,7 +2,7 @@ package com.capg.mms.theatre.exception;
 
 
 
-public class TheatreException extends Exception {
+public class TheatreException extends RuntimeException {
 
 	public TheatreException(String message)
 	{

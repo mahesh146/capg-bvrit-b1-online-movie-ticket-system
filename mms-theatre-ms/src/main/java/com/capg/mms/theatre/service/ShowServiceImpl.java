@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capg.mms.theatre.exception.InvalidInputException;
+import com.capg.mms.theatre.exception.TheatreAlreadyExistsException;
 import com.capg.mms.theatre.exception.TheatreException;
 import com.capg.mms.theatre.model.BookingState;
 import com.capg.mms.theatre.model.Show;
@@ -19,30 +21,43 @@ public class ShowServiceImpl implements IShowService {
 
 	@Override
 	public Show addShow(Show show) {
+		Integer showId=show.getShowId();
+		if(showId==0)
+		{
+			throw new InvalidInputException("show id must be minimum of four characters");
+		}
+		else if(showRepo.existsById(showId)) {
+			throw new TheatreAlreadyExistsException("user already exists with this id :"+showId);
+		}
 		return showRepo.saveAndFlush(show);
 
 	}
 
 	@Override
-	public Show updateShowById(Show show) throws TheatreException {
+	public Show updateShowById(Show show){
 
 		int showId = show.getShowId();
-		if (showRepo.existsById(showId)) {
-			Show updateShow = showRepo.findById(showId).get();
+		if(showId==0)
+		{
+			throw new InvalidInputException("show id must be minimum of four characters");
+		}
+		else if (showRepo.existsById(showId)) {
+			Show updateShow = showRepo.getOne(showId);
+			updateShow.setShowName(show.getShowName());
+			updateShow.setShowStartTime(show.getShowStartTime());
+			updateShow.setShowEndTime(show.getShowEndTime());
 			showRepo.saveAndFlush(updateShow);
-		} else {
-			throw new TheatreException("Id not found");
 		}
 		return show;
-
+		
 	}
 
 	@Override
-	public boolean deleteShowById(int showId) throws TheatreException {
+	public boolean deleteShowById(Integer showId)  {
 
 	
 		if (showRepo.existsById(showId)) {
-			// deleteTheatre = theatreRepo.findById(theatreId).get();
+			
 			showRepo.deleteById(showId);
 		} else {
 			throw new TheatreException("Id not found");
@@ -52,27 +67,16 @@ public class ShowServiceImpl implements IShowService {
 	}
 
 	@Override
-	public List<Show> findAllShows() throws TheatreException {
+	public List<Show> findAllShows() {
 		return showRepo.findAll();
 
 	}
 	@Override
-	public Show getShowById(int showId) {
+	public Show getShowById(Integer showId) {
 		
 		return showRepo.getOne(showId);
 	}
 
-	@Override
-	public boolean validateShowId(int showId, int theatreId, int screenId) throws TheatreException {
-		
-		String show=Integer.toString(showId);
-		String theatre=Integer.toString(theatreId);
-		String screen=Integer.toString(screenId);
-		String show1 = show+theatre+screen;
-		if(!(show1.length()>=8)) {
-			throw new TheatreException("Theatre Id must be minimum of 8 characters concatinated with ShowId,TheatreId and ScreenId");
-		}
-		return true;
-	}
+	
 
 }

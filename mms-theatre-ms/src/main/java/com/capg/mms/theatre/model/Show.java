@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 public class Show {
 @Id
-private int showId;
+private Integer showId;
 @DateTimeFormat(pattern = "yyyy-MM-ddThh:mm:ss")
 private LocalDateTime showStartTime;
 @DateTimeFormat(pattern = "yyyy-MM-ddThh:mm:ss")
@@ -36,15 +36,15 @@ private List<Integer> seats;
 //@JoinColumn(name="screenId")
 private Screen screen;
 private String showName;
-private int movieId;
+private Integer movieId;
 //private int screenId;
-private int theatreId;
+private Integer theatreId;
 public Show() {
 	super();
 }
 
-public Show(int showId, LocalDateTime showStartTime, LocalDateTime showEndTime, List<Integer> seats, Screen screen,
-		String showName, int movieId, int screenId, int theatreId) {
+public Show(Integer showId, LocalDateTime showStartTime, LocalDateTime showEndTime, List<Integer> seats, Screen screen,
+		String showName, Integer movieId, Integer screenId, Integer theatreId) {
 	super();
 	this.showId = showId;
 	this.showStartTime = showStartTime;
@@ -57,10 +57,10 @@ public Show(int showId, LocalDateTime showStartTime, LocalDateTime showEndTime, 
 	this.theatreId = theatreId;
 }
 
-public int getShowId() {
+public Integer getShowId() {
 	return showId;
 }
-public void setShowId(int showId) {
+public void setShowId(Integer showId) {
 	this.showId = showId;
 }
 public LocalDateTime getShowStartTime() {
@@ -97,10 +97,10 @@ public void setShowName(String showName) {
 	this.showName = showName;
 }
 
-public int getMovieId() {
+public Integer getMovieId() {
 	return movieId;
 }
-public void setMovieId(int movieId) {
+public void setMovieId(Integer movieId) {
 	this.movieId = movieId;
 }
 
@@ -108,10 +108,10 @@ public void setMovieId(int movieId) {
 	 * public int getScreenId() { return screenId; } public void setScreenId(int
 	 * screenId) { this.screenId = screenId; }
 	 */
-public int getTheatreId() {
+public Integer getTheatreId() {
 	return theatreId;
 }
-public void setTheatreId(int theatreId) {
+public void setTheatreId(Integer theatreId) {
 	this.theatreId = theatreId;
 }
 @Override

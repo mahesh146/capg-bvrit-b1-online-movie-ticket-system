@@ -7,11 +7,11 @@ import com.capg.mms.theatre.model.Theatre;
 ;
 
 public interface ITheatreService {
-	Theatre addTheatre (Theatre theatre)throws TheatreException;
-	Theatre updateTheatreById(Theatre theatre) throws TheatreException;
-	boolean deleteTheatreById(int theatreId) throws TheatreException;
-	List<Theatre> findAllTheatres() throws TheatreException;
-	Theatre getTheatreById(int theatreId);
+	Theatre addTheatre (Theatre theatre);
+	Theatre updateTheatreById(Theatre theatre); 
+	boolean deleteTheatreById(Integer theatreId); 
+	List<Theatre> findAllTheatres(); 
+	Theatre getTheatreById(Integer theatreId);
 	Theatre getTheatreByName(String theatreName);
-	boolean validateTheatreId(int theatreId) throws TheatreException;
+	boolean validateTheatreId(Integer theatreId) ;
 }
