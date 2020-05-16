@@ -8,4 +8,5 @@ import com.capg.mms.movie.model.Movie;
 @Repository
 public interface IMovieRepository extends JpaRepository<Movie, Integer> {
 	public Movie getByMovieName(String movieName);
+	public Movie getByMovieId(int movieId);
 }
