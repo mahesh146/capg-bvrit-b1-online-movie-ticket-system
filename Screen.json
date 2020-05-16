@@ -1,0 +1,12 @@
+{
+    "screenId":23568,
+    "screenName":"B",
+	"theatre":{
+		"theatreId":	2347 ->>foreign key in theatre 
+	},
+	"showList":[],
+"movieEndDate":"2020-04-30",
+"rows":2,
+"columns":4
+
+}

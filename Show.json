@@ -1,0 +1,15 @@
+{ 
+	
+"showId":101145,
+"showStartTime":"2020-04-28T16:00:00",
+"showEndTime":"2020-04-28T19:00:00",
+"seats":[501,502],
+"screen":{
+	"screenId":233
+	
+},
+
+"showName":"firstshow",
+ "movieId":101,
+ "theatreId":2348
+}

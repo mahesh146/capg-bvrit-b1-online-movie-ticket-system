@@ -1,0 +1,10 @@
+{
+    "theatreId":2344,
+    "theatreName":"AsianGpr",
+    "theatreCity":"karimnagar",
+    "movies":[101,102],
+    "listOfScreens":[],
+    "managerName":"mahesh",
+    "managerContact":9865341723
+	
+}
