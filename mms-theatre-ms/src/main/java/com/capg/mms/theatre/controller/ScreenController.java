@@ -32,45 +32,34 @@ public class ScreenController {
 
 		// Screen screen=new Screen(6011,2011,"4K Dolby Atmos",)
 	}
-
 	@GetMapping("/all")
-	public ResponseEntity<List<Screen>> findAllScreens() {
+	public List<Screen> findAllScreens() {
 
-		List<Screen> list = screenService.findAllScreens();
-		ResponseEntity<List<Screen>> responseEntity = new ResponseEntity<List<Screen>>(list, HttpStatus.OK);
-		return responseEntity;
+		return screenService.findAllScreens();
 
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Screen> addScreen(@RequestBody Screen screen) {
-
-		return new ResponseEntity<Screen>(screenService.addScreen(screen), HttpStatus.CREATED);
+	public Screen addScreen(@RequestBody Screen screen) {
+		if (screenService.validateScreenId(screen.getScreenId())) {
+			Screen screen1 = screenService.addScreen(screen);
+			screen = screen1;
+		}
+		return screen;
 
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Screen> updateTheScreenById(@RequestBody Screen screen) {
+	public Screen updateTheScreenById(@RequestBody Screen screen) {
 
-		if (screen != null) {
-			screen = screenService.updateScreenById(screen);
-			return new ResponseEntity<Screen>(screen, HttpStatus.OK);
-		}
-		return new ResponseEntity<Screen>(HttpStatus.NOT_FOUND);
+		return screenService.updateScreenById(screen);
 
 	}
 
 	@DeleteMapping("/delete/id/{id}")
-	public ResponseEntity<Screen> deleteScreenById(@PathVariable("id") int screenId) {
+	public void deleteScreenById(@PathVariable("id") int screenId) {
 
-		if (screenId != 0) {
-
-			screenService.deleteScreenById(screenId);
-			return new ResponseEntity<Screen>(HttpStatus.OK);
-
-		}
-
-		return new ResponseEntity<Screen>(HttpStatus.NOT_FOUND);
+		screenService.deleteScreenById(screenId);
 
 	}
 }

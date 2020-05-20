@@ -8,7 +8,7 @@ import com.capg.mms.theatre.model.Theatre;
 
 public interface ITheatreService {
 	Theatre addTheatre (Theatre theatre);
-	Theatre updateTheatreById(Theatre theatre); 
+	Theatre updateTheatre(Theatre theatre); 
 	boolean deleteTheatreById(Integer theatreId); 
 	List<Theatre> findAllTheatres(); 
 	Theatre getTheatreById(Integer theatreId);

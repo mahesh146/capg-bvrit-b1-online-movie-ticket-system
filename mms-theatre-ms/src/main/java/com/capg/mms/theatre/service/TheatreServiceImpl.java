@@ -19,31 +19,33 @@ public class TheatreServiceImpl implements ITheatreService {
 	@Autowired
 	ITheatreRepo theatreRepo;
 
-	
-	@Override
+	/***************************************************************************************************************
+	 * -FunctionName : addTheatre() -Input Parameters : Theatre Object -Return Type
+	 * : Theatre -Throws : TheatreAlreadyExistException, Invalid Input Exception
+	 * -Description : Adding Theatre to database
+	 ***************************************************************************************************************/
 	public Theatre addTheatre(Theatre theatre) {
-		Integer theatreId=theatre.getTheatreId();
-		if(theatreId==0)
-		{
+		Integer theatreId = theatre.getTheatreId();
+		if (theatreId == 0) {
 			throw new InvalidInputException("theatre id must be minimum of four characters starting with 2");
+		} else if (theatreRepo.existsById(theatreId)) {
+			throw new TheatreAlreadyExistsException("user already exists with this id :" + theatreId);
 		}
-		else if(theatreRepo.existsById(theatreId)) {
-			throw new TheatreAlreadyExistsException("user already exists with this id :"+theatreId);
-		}
-		
+
 		return theatreRepo.saveAndFlush(theatre);
 	}
 
-	@Override
-	public Theatre updateTheatreById(Theatre theatre){
+	/***************************************************************************************************************
+	 * -FunctionName : updateTheatre() -Input Parameters : Theatre Object -Return
+	 * Type : Theatre -Throws : Invalid Input Exception,TheatreException
+	 * -Description : Updating Theatre in database
+	 ***************************************************************************************************************/
+	public Theatre updateTheatre(Theatre theatre) {
 		Integer theatreId = theatre.getTheatreId();
-		if(theatreId==0)
-		{
+		if (theatreId == 0) {
 			throw new InvalidInputException("theatre id must be minimum of four characters starting with 2");
-		}
-		else if( theatreRepo.existsById(theatreId))
-		{ 
-			Theatre updateTheatre=theatreRepo.getOne(theatreId);		
+		} else if (theatreRepo.existsById(theatreId)) {
+			Theatre updateTheatre = theatreRepo.getOne(theatreId);
 			updateTheatre.setTheatreName(theatre.getTheatreName());
 			updateTheatre.setTheatreCity(theatre.getTheatreCity());
 			updateTheatre.setMovies(theatre.getMovies());
@@ -51,58 +53,71 @@ public class TheatreServiceImpl implements ITheatreService {
 			updateTheatre.setManagerContact(theatre.getManagerContact());
 			theatreRepo.saveAndFlush(updateTheatre);
 		}
-		
-		else
-		{
+
+		else {
 			throw new TheatreException("Id not found");
 		}
 		return theatre;
 	}
 
-	@Override
+	/***************************************************************************************************************
+	 * -FunctionName : deleteTheatreById() -Input Parameters : TheatreId -Return
+	 * Type : Void -Throws : TheatreException -Description : Deleting Theatre in
+	 * database
+	 ***************************************************************************************************************/
 	public boolean deleteTheatreById(Integer theatreId) {
-		
-		if( theatreRepo.existsById(theatreId))
-		{
-			 
+
+		if (theatreRepo.existsById(theatreId)) {
+
 			theatreRepo.deleteById(theatreId);
-		}
-		else
-		{
+		} else {
 			throw new TheatreException("Id not found");
 		}
 		return true;
-		
+
 	}
 
-	@Override
-	public List<Theatre> findAllTheatres()  {
-		if(theatreRepo.findAll()==null)
-		{
-			throw new TheatreException("No Theatre exists");
-		}
+	/***************************************************************************************************************
+	 * -FunctionName : findAllTheatres() -Input Parameters : No Input -Return Type :
+	 * List of Theatres -Throws : TheatreException -Description : Shows All the
+	 * Theatres present in Database
+	 ***************************************************************************************************************/
+	public List<Theatre> findAllTheatres() {
+
 		return theatreRepo.findAll();
 	}
-	
-	@Override
+
+	/***************************************************************************************************************
+	 * -FunctionName : getTheatreByName() -Input Parameters : theatreName -Return
+	 * Type : Theatre -Throws : TheatreException, Invalid Input Exception
+	 * -Description : Fetching Theatre from Database
+	 ***************************************************************************************************************/
 	public Theatre getTheatreByName(String theatreName) {
-		
+
 		return theatreRepo.getByTheatreName(theatreName);
 	}
 
+	/***************************************************************************************************************
+	 * -FunctionName : validateTheatreById() -Input Parameters : theatreId -Return
+	 * Type : Boolean -Throws : TheatreException -Description : Validates the
+	 * TheatreDetails while adding Theatre into Database
+	 ***************************************************************************************************************/
 	@Override
-	public boolean validateTheatreId(Integer theatreId)  {
-		String theatre=Integer.toString(theatreId);
-		if(!(theatre.length()>=4 && theatre.charAt(0)=='2')) {
+	public boolean validateTheatreId(Integer theatreId) {
+		String theatre = Integer.toString(theatreId);
+		if (!(theatre.length() >= 4 && theatre.charAt(0) == '2')) {
 			throw new TheatreException("TheatreId must be minimum of 4 characters, starting with 2..");
 		}
 		return true;
 	}
 
+	/***************************************************************************************************************
+	 * -FunctionName : getTheatreById() -Input Parameters : theatreId -Return Type :
+	 * Theatre -Throws : Invalid Input Exception -Description : Fetches TheatreId
+	 * from Database based on TheatreId
+	 ***************************************************************************************************************/
 	@Override
 	public Theatre getTheatreById(Integer theatreId) {
-			// TODO Auto-generated method stub
-			return theatreRepo.getByTheatreId(theatreId);
+		return theatreRepo.getByTheatreId(theatreId);
 	}
-	
 }

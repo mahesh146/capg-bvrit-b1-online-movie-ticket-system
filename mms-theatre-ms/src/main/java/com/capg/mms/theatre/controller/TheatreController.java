@@ -34,83 +34,35 @@ public class TheatreController {
 	 * ----------------------THEATRE RESOURCES--------------------------------------------------------------------
 	 * ---
 	 */
+	
 	@GetMapping("/all")
-	public ResponseEntity<List<Theatre>> findAllTheatres()  {
+	public List<Theatre> findAllTheatres() {
 
-		List<Theatre> list = theatreService.findAllTheatres();
-		ResponseEntity<List<Theatre>> responseEntity = new ResponseEntity<List<Theatre>>(list, HttpStatus.OK);
-		return responseEntity;
+		return theatreService.findAllTheatres();
 
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Theatre> addTheatre(@RequestBody Theatre theatre) {
-		if(theatreService.validateTheatreId(theatre.getTheatreId()))
-		return new ResponseEntity<Theatre>(theatreService.addTheatre(theatre), HttpStatus.CREATED);
-		return new ResponseEntity<Theatre>(HttpStatus.BAD_REQUEST);
+	public Theatre addTheatre(@RequestBody Theatre theatre) {
+		if (theatreService.validateTheatreId(theatre.getTheatreId())) {
+			Theatre theatre1 = theatreService.addTheatre(theatre);
+			theatre = theatre1;
+
+		}
+		return theatre;
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Theatre> updateTheaterById(@RequestBody Theatre theatre) {
-		
-		if (theatre != null) {
-			theatreService.updateTheatreById(theatre).getTheatreId();
-			return new ResponseEntity<Theatre>(theatre, HttpStatus.OK);
-		} 
-			 return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
-		
-		
+	public Theatre updateTheaterById(@RequestBody Theatre theatre) {
 
-	}
-	@GetMapping("/id/{id}")
-	public ResponseEntity<Theatre> getTheatreById(@PathVariable("id")Integer theatreId){
+		return theatreService.updateTheatre(theatre);
 
-		if(theatreId!=0) {
-			Theatre th=theatreService.getTheatreById(theatreId);
-			return new ResponseEntity<Theatre>(th,HttpStatus.OK);
-		}
-	
-		
-			return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
-		
-		
-		
-		
 	}
 
 	@DeleteMapping("/delete/id/{id}")
-	public ResponseEntity<Theatre> deleteTheatreById(@PathVariable("id") Integer theatreId)  {
+	public void deleteTheatreById(@PathVariable("id") Integer theatreId) {
+		theatreService.deleteTheatreById(theatreId);
 
-		
-		if (theatreId != 0) {
-			theatreService.deleteTheatreById(theatreId);
-			return new ResponseEntity<Theatre>(HttpStatus.OK);
-
-		}
-		else {
-			 return new ResponseEntity<Theatre>(HttpStatus.NOT_FOUND);
-		}
-		
-		
 	}
-	
-	@GetMapping("/name/{name}")
-	public ResponseEntity<Theatre> getByName(@PathVariable("name") String theatreName) 
-	{
-		
-			Theatre th=theatreService.getTheatreByName(theatreName);
-			return new ResponseEntity<Theatre>(th,HttpStatus.OK);
 
-		
-	}
-	/*
-	 * @GetMapping("/id/{id}") public ResponseEntity<Theatre> getById(@PathVariable
-	 * ("id") int theatreId) throws TheatreException{
-	 * 
-	 * 
-	 * Theatre th=theatreService.getTheatreById(theatreId); return new
-	 * ResponseEntity<Theatre>(HttpStatus.OK);
-	 * 
-	 * }
-	 */
 }

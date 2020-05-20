@@ -12,5 +12,5 @@ public interface IShowService {
 	boolean deleteShowById(Integer showId);
 	List<Show> findAllShows();
 	Show getShowById(Integer showId);
-	
+	boolean validateShowId(int showId);
 }

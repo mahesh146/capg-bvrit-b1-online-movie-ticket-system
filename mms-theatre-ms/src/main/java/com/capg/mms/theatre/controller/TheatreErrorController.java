@@ -21,12 +21,12 @@ public class TheatreErrorController {
 		
 	}
 	@ExceptionHandler(TheatreAlreadyExistsException.class)
-	@ResponseStatus(value= HttpStatus.NOT_ACCEPTABLE,reason = "Theatre already exists")
+	@ResponseStatus(value= HttpStatus.NOT_ACCEPTABLE,reason = "Resource already exists")
 	public void handleUserAlredyExistsException (){
 		
 	}
 	@ExceptionHandler(TheatreException.class)
-	@ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "Theatre not found")
+	@ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "Resource not found")
 	public  void handleTheatreNotFoundException() {
 		
 	}

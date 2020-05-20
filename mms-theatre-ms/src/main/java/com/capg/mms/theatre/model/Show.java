@@ -32,12 +32,9 @@ private List<Integer> seats;
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name="screenId")
 @JsonBackReference
-//@ManyToOne
-//@JoinColumn(name="screenId")
 private Screen screen;
 private String showName;
 private Integer movieId;
-//private int screenId;
 private Integer theatreId;
 public Show() {
 	super();

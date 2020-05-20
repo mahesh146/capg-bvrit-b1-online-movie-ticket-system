@@ -14,18 +14,14 @@ import javax.persistence.Table;
 @Table(name = "theatre")
 public class Theatre {
 	@Id
-	//@GeneratedValue
-	//@Size(min=4,message = "theatreId must minimum be of 4 characters")
-	//@Min(value=2000,message="theatreId must be starting with 2")
+	
 	private Integer theatreId;
 	private String theatreName;
 	private String theatreCity;
 	@ElementCollection
 	private List<Integer> movies;
 	@OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//	@MapsId
-	//@OneToMany(mappedBy="theatre")
-	//@JsonIgnore
+
 	private List<Screen> listOfScreens;
 	private String managerName;
 	private String managerContact;
@@ -86,7 +82,7 @@ public class Theatre {
 
 		
 		
-		  for (Screen screen : listOfScreens) { screen.setTheatre(this); }
+  for (Screen screen : listOfScreens) { screen.setTheatre(this); }
 		 	 
 		this.listOfScreens = listOfScreens;
 	}

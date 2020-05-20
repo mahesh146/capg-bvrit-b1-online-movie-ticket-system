@@ -14,5 +14,6 @@ public interface IScreenService {
 	List<Screen> findAllScreens();
 	Screen getScreenById(int screenId);
 	
-	
+	boolean validateScreenId(int screenId);
+
 }
